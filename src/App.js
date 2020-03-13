@@ -1,22 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 
-import { useQuery, ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient, { gql } from 'apollo-boost';
-import 'dotenv/config';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 
 import './styles.css';
 
-const GET_USER_REPO = gql`
-  query ($user: String!, $repo: String!) {
-    user(login: $user) {
-      name
-      repository(name: $repo) {
-        name
-      }
-    }
-  }
-`;
+import Repo from './components/Repo';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -99,22 +89,6 @@ const App = () => {
           <Repo vars={[user, repo]} />
         </ApolloProvider>
       }
-    </div>
-  );
-}
-
-const Repo = ({ vars }) => {
-  const [user, repo] = vars;
-  const { loading, error, data } = useQuery(GET_USER_REPO, {
-    variables: { user, repo },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error.</p>;
-
-  return (
-    <div className="repo-container">
-      <p>You are exploring repo "{data.user.repository.name}" by {data.user.name}.</p>
     </div>
   );
 }
