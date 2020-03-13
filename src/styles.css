@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.container {
+  width: 90rem;
+  height: 95vh;
+  margin: 2rem auto;
+  border: 1px solid black;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  width: 100%;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
+  padding: 2rem 2rem 1rem 2rem;
+}
+
+.form-content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 10rem;
+}
+
+.form-input {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-button {
+  margin: 0 auto;
+}
+
+.repo-container {
+  margin-top: 2rem;
+}
