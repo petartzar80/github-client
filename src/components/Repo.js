@@ -23,6 +23,7 @@ const GET_USER_REPO = gql`
             node {
               id
               title
+              bodyText
             }
           }
         }
@@ -31,6 +32,7 @@ const GET_USER_REPO = gql`
             node {
               id
               title
+              bodyText
             }
           }
         }

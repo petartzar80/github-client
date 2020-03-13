@@ -22,6 +22,7 @@ html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding-bottom: 2rem;
 }
 
 .header {
@@ -92,6 +93,11 @@ html {
 
 .issue-title:not(:last-child) {
   margin-bottom: 1rem;
+}
+
+.issue-details {
+  border: 1px solid black;
+  padding: 2rem;
 }
 
 
