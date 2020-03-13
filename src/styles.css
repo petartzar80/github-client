@@ -69,14 +69,31 @@ html {
   margin: 0 auto;
 }
 
-.issues {
+.issue-container {
   margin-top: 2rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+.tab-buttons {
+  margin: 0 auto;
 }
 
 .issue-list {
-  width: 32%;
-  padding: 1rem;
+  width: 90%;
+  padding: 2rem;
+  margin: 2rem auto;
   border: 1px solid black;
 }
+
+.issue-list-title {
+  margin-bottom: 3rem;
+}
+
+.issue-title:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+
+
+

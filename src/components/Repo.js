@@ -1,7 +1,10 @@
 import React from 'react';
+import { useState } from 'react';
 
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+
+import IssueList from './IssueList';
 
 const GET_USER_REPO = gql`
   query ($user: String!, $repo: String!) {
@@ -23,7 +26,7 @@ const GET_USER_REPO = gql`
             }
           }
         }
-        closedIssues: issues(last: 10, states: [OPEN]) {
+        closedIssues: issues(last: 10, states: [CLOSED]) {
           edges {
             node {
               id
@@ -38,6 +41,8 @@ const GET_USER_REPO = gql`
 
 const Repo = ({ vars }) => {
   const [user, repo] = vars;
+  const [tab, setTab] = useState();
+
   const { loading, error, data } = useQuery(GET_USER_REPO, {
     variables: { user, repo },
   });
@@ -47,7 +52,7 @@ const Repo = ({ vars }) => {
 
   const pullRequests = data.user.repository.pullRequests.nodes;
   const openIssues = data.user.repository.openIssues.edges;
-  const closedIssues = data.user.repository.openIssues.edges;
+  const closedIssues = data.user.repository.closedIssues.edges;
 
   return (
     <div className="repo-container">
@@ -64,37 +69,53 @@ const Repo = ({ vars }) => {
       {(pullRequests.length
         || openIssues.length
         || closedIssues.length) &&
-        <div className="issues">
-          <div className="issue-list">
-            <h4>Pull Requests:</h4>
-            <ul>
-              {pullRequests.map(pullReq => (
-                <li key={pullReq.id}>
-                  <p>{pullReq.title}</p>
-                </li>
-              ))}
-            </ul>
+        <div className="issue-container">
+
+          <div className="tab-buttons">
+            <button
+              onClick={() => setTab('pull')}>Pull Requests</button>
+            <button
+              onClick={() => setTab('open')}>Open Issues</button>
+            <button
+              onClick={() => setTab('closed')}>Closed Issues</button>
           </div>
-          <div className="issue-list">
-            <h4>Open Issues:</h4>
-            <ul>
-              {openIssues.map(issue => (
-                <li key={issue.node.id}>
-                  <p>{issue.node.title}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="issue-list">
-            <h4>Closed Issues:</h4>
-            <ul>
-              {closedIssues.map(issue => (
-                <li key={issue.node.id}>
-                  <p>{issue.node.title}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+
+          {tab === 'pull' &&
+            <div className="issue-list">
+              <div className="issue-list-title">
+                <h4>Pull Requests:</h4>
+              </div>
+
+              <ul>
+                {pullRequests.map(pullReq => (
+                  <div key={pullReq.id} className="issue-title">
+                    <li>
+                      <p>{pullReq.title}</p>
+                    </li>
+                  </div>
+                ))}
+              </ul>
+            </div>
+          }
+
+          {tab === 'open' &&
+            <div className="issue-list">
+              <div className="issue-list-title">
+                <h4>Open Issues:</h4>
+              </div>
+              <IssueList issues={openIssues} />
+            </div>
+          }
+
+          {tab === 'closed' &&
+            <div className="issue-list">
+              <div className="issue-list-title">
+                <h4>Closed Issues:</h4>
+              </div>
+              <IssueList issues={closedIssues} />
+            </div>
+          }
+
         </div>
       }
     </div>
