@@ -91,6 +91,12 @@ html {
   margin-bottom: 3rem;
 }
 
+.issue-title {
+  cursor: pointer;
+  border: 1px solid black;
+  padding: .5rem;
+}
+
 .issue-title:not(:last-child) {
   margin-bottom: 1rem;
 }
@@ -134,12 +140,14 @@ html {
   font-weight: bold;
 }
 
-.issue-title, .comments-title {
+.issue-item-title, .comments-title {
   margin-bottom: 1rem;
 }
 
 .comments-list {
   width: 100%;
+  border: 1px solid black;
+  padding: 2rem;
   overflow-y: auto;
 }
 
@@ -149,6 +157,10 @@ html {
 
 .comment {
   border: 1px solid black;
+  /* margin-bottom: 1rem; */
+}
+
+.comment:not(:last-child) {
   margin-bottom: 1rem;
 }
 

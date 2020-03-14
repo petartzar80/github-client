@@ -4,7 +4,6 @@ import { useState } from 'react';
 import IssueItem from './IssueItem';
 
 const IssueList = ({ issues }) => {
-  console.log('issues: ', issues);
 
   const [visible, setVisible] = useState(false);
   const [issueDetails, setIssueDetails] = useState();
@@ -17,7 +16,7 @@ const IssueList = ({ issues }) => {
 
   return (
     <ul>
-      {issues.map(issue => (
+      {issues.reverse().map(issue => (
         <div key={issue.node.id} className="issue-title">
           <li>
             <p onClick={() => showIssueDetails(issue)}>{issue.node.title}</p>
