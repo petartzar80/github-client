@@ -24,6 +24,19 @@ const GET_USER_REPO = gql`
               id
               title
               bodyText
+              createdAt
+              author {
+                login
+              }
+              comments(first: 10) {
+                nodes {
+                  author {
+                    login
+                  }
+                  bodyText
+                  createdAt
+                }
+              }
             }
           }
         }
@@ -33,6 +46,19 @@ const GET_USER_REPO = gql`
               id
               title
               bodyText
+              createdAt
+              author {
+                login
+              }
+              comments(first: 10) {
+                nodes {
+                  author {
+                    login
+                  }
+                  bodyText
+                  createdAt
+                }
+              }
             }
           }
         }

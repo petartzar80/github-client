@@ -95,10 +95,79 @@ html {
   margin-bottom: 1rem;
 }
 
-.issue-details {
-  border: 1px solid black;
-  padding: 2rem;
+/* MODAL */
+
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
 }
+
+.issue-item {
+  position: relative;
+  width: 80rem;
+  height: 85vh;
+  margin: 2rem auto;
+  padding: 4rem;
+  border: 1px solid black;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  text-align: right;
+  font-size: large;
+  font-weight: bold;
+}
+
+.issue-title, .comments-title {
+  margin-bottom: 1rem;
+}
+
+.comments-list {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.comments-title {
+  text-align: center;
+}
+
+.comment {
+  border: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.comment-author {
+  border-bottom: 1px solid black;
+  padding: 1rem;
+}
+
+.comment-content {
+  padding: 1rem;
+}
+
+.initial-post {
+  width: 100%;
+}
+
+
+
+
 
 
 
