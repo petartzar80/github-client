@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+import PULL_REQ_FRAGMENT from './fragments/pullReqs';
 import ISSUES_FRAGMENT from './fragments/issues';
 
 const GET_USER_REPO = gql`
@@ -9,10 +10,7 @@ const GET_USER_REPO = gql`
       repository(name: $repo) {
         name
         pullRequests(last: 10) {
-          nodes {
-            id
-            title
-          }
+          ...pullReqs
         }
         openIssues: issues(last: 10, states: [OPEN]) {
           ...issues
@@ -24,6 +22,7 @@ const GET_USER_REPO = gql`
     }
   }
 
+  ${PULL_REQ_FRAGMENT}
   ${ISSUES_FRAGMENT}
 `;
 

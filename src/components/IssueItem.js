@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const IssueItem = ({ props }) => {
 
   const [issue, visible] = props;
+
   const initialComments = issue.comments.nodes;
   const [comments, setComments] = useState(initialComments);
   const [input, setInput] = useState('');

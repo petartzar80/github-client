@@ -14,7 +14,7 @@ html {
 
 .container {
   width: 90rem;
-  height: 95vh;
+  min-height: 95vh;
   margin: 2rem auto;
   border: 1px solid black;
   font-size: 1.6rem;
@@ -138,6 +138,7 @@ html {
   text-align: right;
   font-size: large;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .issue-item-title, .comments-title {
@@ -171,6 +172,8 @@ html {
 
 .comment-content {
   padding: 1rem;
+  max-height: 22vh;
+  overflow-y: auto;
 }
 
 .initial-post {

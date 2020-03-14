@@ -9,23 +9,42 @@ const IssueList = ({ issues }) => {
   const [issueDetails, setIssueDetails] = useState();
 
   const showIssueDetails = (issue) => {
-    setIssueDetails(issue.node);
+    setIssueDetails(issue);
     setVisible(!visible);
   }
 
 
   return (
     <ul>
-      {issues.reverse().map(issue => (
-        <div key={issue.node.id} className="issue-title">
-          <li>
-            <p onClick={() => showIssueDetails(issue)}>{issue.node.title}</p>
-          </li>
-        </div>
-      ))}
+      {issues.reverse().map(issue => {
+        let issueKey;
+        let issueTitle;
+        let issueItem;
+
+        if (issue.node) {
+          issueKey = issue.node.id;
+          issueTitle = issue.node.title;
+          issueItem = issue.node;
+        } else {
+          issueKey = issue.id;
+          issueTitle = issue.title;
+          issueItem = issue;
+        }
+
+        return (
+          <div key={issueKey} className="issue-title">
+            <li>
+              <p onClick={() => showIssueDetails(issueItem)}>{issueTitle}</p>
+            </li>
+          </div>
+        )
+
+      })}
+
       {visible &&
         <IssueItem props={[issueDetails, setVisible]} />
       }
+
     </ul>
   )
 };
