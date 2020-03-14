@@ -2,70 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import IssueList from './IssueList';
-
-const GET_USER_REPO = gql`
-  query ($user: String!, $repo: String!) {
-    user(login: $user) {
-      name
-      repository(name: $repo) {
-        name
-        pullRequests(last: 10) {
-          nodes {
-            id
-            title
-          }
-        }
-        openIssues: issues(last: 10, states: [OPEN]) {
-          edges {
-            node {
-              id
-              title
-              bodyText
-              createdAt
-              author {
-                login
-              }
-              comments(first: 10) {
-                nodes {
-                  author {
-                    login
-                  }
-                  bodyText
-                  createdAt
-                }
-              }
-            }
-          }
-        }
-        closedIssues: issues(last: 10, states: [CLOSED]) {
-          edges {
-            node {
-              id
-              title
-              bodyText
-              createdAt
-              author {
-                login
-              }
-              comments(first: 10) {
-                nodes {
-                  author {
-                    login
-                  }
-                  bodyText
-                  createdAt
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import GET_USER_REPO from '../query/mainQuery';
 
 const Repo = ({ vars }) => {
   const [user, repo] = vars;
