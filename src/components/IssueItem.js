@@ -47,7 +47,7 @@ const IssueItem = ({ props }) => {
           }
         </div>
 
-        {(initialComments.length > 0) &&
+        {(initialComments.length > 1) &&
           <div className="comments-title">
             <h3>Filter comments by username or content:</h3>
             <input
@@ -60,23 +60,29 @@ const IssueItem = ({ props }) => {
         }
 
         {(comments.length > 0) &&
-          <ul className="comments-list">
-            {comments.map(comment => (
-              <li key={comment.createdAt} className="comment">
-                <div className="comment-author">
-                  <p>{comment.author.login} commented on {moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                </div>
+          <div className="comments-container">
+            {(comments.length === 1) &&
+              <div className="comments-title">
+                <h3>Comment:</h3>
+              </div>
+            }
+            <ul className="comments-list">
+              {comments.map(comment => (
+                <li key={comment.createdAt} className="comment">
+                  <div className="comment-author">
+                    <p>{comment.author.login} commented on {moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                  </div>
 
-                <div className="comment-content">
-                  <div dangerouslySetInnerHTML={{
-                    __html: comment.bodyHTML
-                  }}></div>
-                </div>
+                  <div className="comment-content">
+                    <div dangerouslySetInnerHTML={{
+                      __html: comment.bodyHTML
+                    }}></div>
+                  </div>
 
-
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
         }
       </div>
     </div>

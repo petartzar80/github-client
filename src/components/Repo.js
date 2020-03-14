@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import IssueList from './IssueList';
+import ErrorMessage from './ErrorMsg';
 import GET_USER_REPO from '../query/mainQuery';
 
 const Repo = ({ vars }) => {
@@ -14,8 +15,8 @@ const Repo = ({ vars }) => {
     variables: { user, repo },
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error.</p>;
+  if (loading) return <h4 className="loading">Loading...</h4>;
+  if (error) return <ErrorMessage error={error} />;
 
   const pullRequests = data.user.repository.pullRequests.nodes;
   const openIssues = data.user.repository.openIssues.edges;
