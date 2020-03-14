@@ -6,7 +6,7 @@ const COMMENTS_FRAGMENT = gql`
       author {
         login
       }
-      bodyText
+      bodyHTML
       createdAt
     }
   }

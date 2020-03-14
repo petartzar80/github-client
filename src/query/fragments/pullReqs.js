@@ -10,7 +10,7 @@ const PULL_REQ_FRAGMENT = gql`
       author {
         login
       }
-      bodyText
+      bodyHTML
       createdAt
       comments(first: 10) {
         ...comments

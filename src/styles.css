@@ -165,12 +165,12 @@ html {
   margin-bottom: 1rem;
 }
 
-.comment-author {
-  border-bottom: 1px solid black;
+.comment-author { 
   padding: 1rem;
 }
 
 .comment-content {
+  border-top: 1px solid black;
   padding: 1rem;
   max-height: 22vh;
   overflow-y: auto;

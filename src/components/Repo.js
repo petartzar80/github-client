@@ -53,16 +53,6 @@ const Repo = ({ vars }) => {
                 <h4>Pull Requests:</h4>
               </div>
               <IssueList issues={pullRequests} />
-
-              {/* <ul>
-                {pullRequests.map(pullReq => (
-                  <div key={pullReq.id} className="issue-title">
-                    <li>
-                      <p>{pullReq.title}</p>
-                    </li>
-                  </div>
-                ))}
-              </ul> */}
             </div>
           }
 

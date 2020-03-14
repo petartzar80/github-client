@@ -8,7 +8,7 @@ const ISSUES_FRAGMENT = gql`
       node {
         id
         title
-        bodyText
+        bodyHTML
         createdAt
         author {
           login

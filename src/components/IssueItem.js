@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import moment from 'moment';
+
 const IssueItem = ({ props }) => {
 
   const [issue, visible] = props;
@@ -17,7 +19,7 @@ const IssueItem = ({ props }) => {
 
     if (input) {
       const filteredComments = initialComments.filter(comment =>
-        comment.author.login.match(regex) || comment.bodyText.match(regex)
+        comment.author.login.match(regex) || comment.bodyHTML.match(regex)
       );
       setComments(filteredComments);
 
@@ -34,11 +36,15 @@ const IssueItem = ({ props }) => {
 
         <div className="comment initial-post">
           <div className="comment-author">
-            <p>{issue.author.login} opened this issue on {issue.createdAt}</p>
+            <p>{issue.author.login} opened this issue on {moment(issue.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
           </div>
-          <div className="comment-content">
-            <p>{issue.bodyText}</p>
-          </div>
+          {issue.bodyHTML &&
+            <div className="comment-content">
+              <div dangerouslySetInnerHTML={{
+                __html: issue.bodyHTML
+              }}></div>
+            </div>
+          }
         </div>
 
         {(initialComments.length > 0) &&
@@ -58,11 +64,16 @@ const IssueItem = ({ props }) => {
             {comments.map(comment => (
               <li key={comment.createdAt} className="comment">
                 <div className="comment-author">
-                  <p>{comment.author.login} commented on {comment.createdAt}</p>
+                  <p>{comment.author.login} commented on {moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
                 </div>
+
                 <div className="comment-content">
-                  <p>{comment.bodyText}</p>
+                  <div dangerouslySetInnerHTML={{
+                    __html: comment.bodyHTML
+                  }}></div>
                 </div>
+
+
               </li>
             ))}
           </ul>
