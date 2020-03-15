@@ -6,6 +6,7 @@ import ApolloClient from 'apollo-boost';
 
 import './styles.css';
 
+import Title from './components/Title';
 import Repo from './components/Repo';
 
 const App = () => {
@@ -45,7 +46,8 @@ const App = () => {
   return (
     <div className="container">
       <header className="header">
-        <h1>GitHub Client</h1>
+        {/* <h1>GitHub Client</h1> */}
+        <Title />
       </header>
 
       <div className="form-container">

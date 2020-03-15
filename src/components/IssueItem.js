@@ -61,7 +61,7 @@ const IssueItem = ({ props }) => {
 
         {(comments.length > 0) &&
           <div className="comments-container">
-            {(comments.length === 1) &&
+            {(initialComments.length === 1) &&
               <div className="comments-title">
                 <h3>Comment:</h3>
               </div>
