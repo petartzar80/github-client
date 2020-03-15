@@ -25,21 +25,13 @@ body::-webkit-scrollbar {
 input {
   -webkit-appearance: none; 
   appearance: none;
-  /* color: red; */
-  /* color: #ccff00; */
   color: #39ff14;
   font: inherit;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
+input:-webkit-autofill:focus {
   -webkit-text-fill-color: #39ff14;
   transition: background-color 5000s ease-in-out 0s;
   font: inherit;
@@ -104,6 +96,14 @@ button:focus {
   height: 10rem;
 }
 
+.inputs {
+  margin: 0 auto;
+  height: 66%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .form-input {
   display: flex;
   justify-content: flex-end;
@@ -113,17 +113,14 @@ button:focus {
   width: 35rem;
   border: 1px solid #39ff14;
   background: black;
+  margin-left: 1rem;
+  padding: 0 .5rem;
 }
 
 .input-field:focus {
   outline: none;
   border-color: red;
 } 
-
-#githubToken {
-  margin-left: 1rem;
-  padding: 0 .5rem;
-}
 
 .form-button {
   margin: 0 auto;
@@ -215,7 +212,6 @@ button:focus {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* overflow-y: auto; */
 }
 
 .close {
@@ -296,50 +292,49 @@ button:focus {
   margin-top: .5rem;
 }
 
-/* @media (max-width: 430px) {
+/* BASIC RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
   html { 
-    background: red; 
-    font-size: 42%;
-  }
-  .container {
-    font-size: 3rem;
-  }
-}
-@media (min-width: 401px) and (max-width: 674px) {
-  html { 
-    background: green; 
-    font-size: 42%;
-  }
-  .container {
-    margin-top: 0;
-    height: 100vh;
-    width: 100%;
-  }
-  .form-content {
-    width: 90%;
-  }
-  .issue-list {
-    height: 100%;
-    font-size: 2rem;
-  }
-}
-@media (min-width: 675px) and (max-width: 900px) {
-  html { 
-    background: green; 
     font-size: 50%;
   }
   .container {
     margin-top: 0;
     height: 100vh;
     width: 100%;
+    margin-bottom: 0;
+  }
+  .form-container {
+    height: 14rem;
+    font-size: 1.4rem;
+  }
+  .form-content {
+    width: 100%;
   }
   .issue-list {
     height: 100%;
-    font-size: 2rem;
   }
 }
-@media (min-width: 901px) {
+
+@media (max-width: 430px) {
   html { 
-    background: blue; 
+    font-size: 31.25%;
   }
-} */
+  .container {
+    margin-top: 0;
+    height: 100vh;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .form-container {
+    height: 24rem;
+    font-size: 2.8rem;
+  }
+  .form-container form {
+    height: 100%;
+    width: 100%;
+  }
+  .form-content {
+    height: 100%;
+  }
+}

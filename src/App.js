@@ -56,32 +56,35 @@ const App = () => {
       <div className="form-container">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form-content">
-            <div className="form-input">
-              <label htmlFor="githubToken">
-                Please, enter your OAuth GitHub token:
+            <div className="inputs">
+              <div className="form-input">
+                <label htmlFor="githubToken">
+                  OAuth GitHub token:
               </label>
-              <input
-                id="githubToken"
-                type="text"
-                value={token}
-                onChange={(e) => handleChangeToken(e)}
-                className="input-field token-input"
-                required
-              />
-            </div>
-            <div className="form-input">
-              <label htmlFor="url">
-                Get issues from https://github.com/
+                <input
+                  id="githubToken"
+                  type="text"
+                  value={token}
+                  onChange={(e) => handleChangeToken(e)}
+                  className="input-field token-input"
+                  required
+                />
+              </div>
+              <div className="form-input">
+                <label htmlFor="url">
+                  Path (user/repo):
               </label>
-              <input
-                id="url"
-                type="text"
-                value={path}
-                onChange={(e) => handleChangePath(e)}
-                className="input-field"
-                required
-              />
+                <input
+                  id="url"
+                  type="text"
+                  value={path}
+                  onChange={(e) => handleChangePath(e)}
+                  className="input-field"
+                  required
+                />
+              </div>
             </div>
+
             <div className="form-button">
               <button type="submit">Submit</button>
             </div>
