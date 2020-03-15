@@ -13,6 +13,7 @@ const App = () => {
   const [token, setToken] = useState('');
   const [path, setPath] = useState('');
   const [client, setClient] = useState();
+  const [stretch, setStretch] = useState('');
   const [user, setUser] = useState();
   const [repo, setRepo] = useState();
 
@@ -38,13 +39,15 @@ const App = () => {
       },
     }));
 
+    setStretch('container-stretch');
+
     const [user, repo] = path.split('/');
     setUser(user);
     setRepo(repo);
   }
 
   return (
-    <div className="container">
+    <div className={`container ${stretch}`}>
       <header className="header">
         {/* <h1>GitHub Client</h1> */}
         <Title />
@@ -55,14 +58,14 @@ const App = () => {
           <div className="form-content">
             <div className="form-input">
               <label htmlFor="githubToken">
-                Please, enter your personal OAuth GitHub token:
+                Please, enter your OAuth GitHub token:
               </label>
               <input
                 id="githubToken"
                 type="text"
                 value={token}
                 onChange={(e) => handleChangeToken(e)}
-                style={{ width: '300px' }}
+                className="input-field token-input"
                 required
               />
             </div>
@@ -75,7 +78,7 @@ const App = () => {
                 type="text"
                 value={path}
                 onChange={(e) => handleChangePath(e)}
-                style={{ width: '300px' }}
+                className="input-field"
                 required
               />
             </div>

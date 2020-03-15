@@ -4,7 +4,6 @@ import { useState } from 'react';
 import IssueItem from './IssueItem';
 
 const IssueList = ({ issues }) => {
-
   const [visible, setVisible] = useState(false);
   const [issueDetails, setIssueDetails] = useState();
 

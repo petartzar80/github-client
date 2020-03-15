@@ -36,7 +36,7 @@ const IssueItem = ({ props }) => {
 
         <div className="comment initial-post">
           <div className="comment-author">
-            <p>{issue.author.login} opened this issue on {moment(issue.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+            <p><span className="span-author">{issue.author.login}</span> opened this issue on <span className="span-date">{moment(issue.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span></p>
           </div>
           {issue.bodyHTML &&
             <div className="comment-content">
@@ -54,7 +54,7 @@ const IssueItem = ({ props }) => {
               type="text"
               value={input}
               onChange={(e) => handleChange(e)}
-              style={{ width: '300px' }}
+              className="input-field"
             />
           </div>
         }
@@ -70,7 +70,7 @@ const IssueItem = ({ props }) => {
               {comments.map(comment => (
                 <li key={comment.createdAt} className="comment">
                   <div className="comment-author">
-                    <p>{comment.author.login} commented on {moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                    <p><span className="span-author">{comment.author.login}</span> commented on <span className="span-date">{moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span></p>
                   </div>
 
                   <div className="comment-content">

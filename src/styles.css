@@ -12,22 +12,72 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  background-color: black;
+  color: #39ff14;
+  overflow: auto;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+input {
+  -webkit-appearance: none; 
+  appearance: none;
+  /* color: red; */
+  /* color: #ccff00; */
+  color: #39ff14;
+  font: inherit;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #39ff14;
+  transition: background-color 5000s ease-in-out 0s;
+  font: inherit;
+}
+
+button {
+  border: 1px solid #39ff14;
+  background-color: black;
+  color: #39ff14;
+  padding: .5rem 1rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
 .container {
   width: 90rem;
-  min-height: 95vh;
   margin: 2rem auto;
-  border: 1px solid black;
+  border: 1px solid #39ff14;
+  border-bottom: 0;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.container-stretch {
   padding-bottom: 2rem;
+  border-bottom: 1px solid #39ff14;
 }
 
 .header {
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #39ff14;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +91,7 @@ html {
 .form-container {
   width: 100%;
   margin: 0 auto;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #39ff14;
   padding: 2rem 2rem 1rem 2rem;
 }
 
@@ -59,13 +109,32 @@ html {
   justify-content: flex-end;
 }
 
+.input-field {
+  width: 35rem;
+  border: 1px solid #39ff14;
+  background: black;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: red;
+} 
+
+#githubToken {
+  margin-left: 1rem;
+  padding: 0 .5rem;
+}
+
 .form-button {
   margin: 0 auto;
 }
 
+.form-button button {
+  width: 10rem;
+}
+
 .repo-container {
   width: 100%;
-  height: 100%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -83,13 +152,26 @@ html {
 
 .tab-buttons {
   margin: 0 auto;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.tab-buttons button {
+  height: 3rem;
+}
+
+.tab-buttons button:focus {
+  outline: none;
+  border: 2px solid red;
 }
 
 .issue-list {
   width: 90%;
+  height: 50rem;
   padding: 2rem;
   margin: 2rem auto;
-  border: 1px solid black;
+  border: 1px solid #39ff14;
 }
 
 .issue-list-title {
@@ -98,7 +180,7 @@ html {
 
 .issue-title {
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid #39ff14;
   padding: .5rem;
 }
 
@@ -127,13 +209,13 @@ html {
   height: 85vh;
   margin: 2rem auto;
   padding: 4rem;
-  border: 1px solid black;
-  background-color: #fff;
+  border: 1px solid #39ff14;
+  background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .close {
@@ -148,15 +230,17 @@ html {
 
 .issue-item-title, .comments-title {
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .comments-container {
   width: 100%;
+  border: 1px solid #39ff14;
+  overflow-y: auto;
 }
 
 .comments-list {
-  width: 100%;
-  border: 1px solid black;
+  width: 100%; 
   padding: 2rem;
   overflow-y: auto;
 }
@@ -166,8 +250,7 @@ html {
 }
 
 .comment {
-  border: 1px solid black;
-  /* margin-bottom: 1rem; */
+  border: 1px solid #39ff14;
 }
 
 .comment:not(:last-child) {
@@ -178,8 +261,16 @@ html {
   padding: 1rem;
 }
 
+.span-author {
+  color: red;
+}
+
+.span-date {
+  color: yellow;
+}
+
 .comment-content {
-  border-top: 1px solid black;
+  border-top: 1px solid #39ff14;
   padding: 1rem;
   max-height: 22vh;
   overflow-y: auto;
@@ -196,7 +287,7 @@ html {
 }
 
 .error-container {
-  border: 1px solid black;
+  border: 1px solid #39ff14;
   padding: 1rem 2rem 2rem 2rem;
   text-align: center;
 }
@@ -204,11 +295,3 @@ html {
 .error-msg {
   margin-top: .5rem;
 }
-
-
-
-
-
-
-
-
