@@ -10,6 +10,11 @@ const IssueItem = ({ props }) => {
   const [comments, setComments] = useState(initialComments);
   const [input, setInput] = useState('');
 
+  console.log('initial comments: ', initialComments);
+  console.log(('comments: ', comments));
+
+
+
   const handleChange = e => {
     setInput(e.target.value);
   }
@@ -19,7 +24,7 @@ const IssueItem = ({ props }) => {
 
     if (input) {
       const filteredComments = initialComments.filter(comment =>
-        comment.author.login.match(regex) || comment.bodyHTML.match(regex)
+        comment.author.login.match(regex) || comment.bodyText.match(regex)
       );
       setComments(filteredComments);
 

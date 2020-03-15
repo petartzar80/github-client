@@ -7,6 +7,7 @@ const COMMENTS_FRAGMENT = gql`
         login
       }
       bodyHTML
+      bodyText
       createdAt
     }
   }
