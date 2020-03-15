@@ -49,7 +49,6 @@ const App = () => {
   return (
     <div className={`container ${stretch}`}>
       <header className="header">
-        {/* <h1>GitHub Client</h1> */}
         <Title />
       </header>
 

@@ -10,11 +10,6 @@ const IssueItem = ({ props }) => {
   const [comments, setComments] = useState(initialComments);
   const [input, setInput] = useState('');
 
-  console.log('initial comments: ', initialComments);
-  console.log(('comments: ', comments));
-
-
-
   const handleChange = e => {
     setInput(e.target.value);
   }
