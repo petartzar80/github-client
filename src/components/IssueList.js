@@ -7,15 +7,23 @@ const IssueList = ({ issues }) => {
   const [visible, setVisible] = useState(false);
   const [issueDetails, setIssueDetails] = useState();
 
+  console.log("issue list: ", issues);
+
+  const sortedIssues = issues.sort((a, b) => {
+    if (a.node) { a = a.node };
+    if (b.node) { b = b.node };
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
+
   const showIssueDetails = (issue) => {
     setIssueDetails(issue);
     setVisible(!visible);
   }
 
-
   return (
     <ul>
-      {issues.reverse().map(issue => {
+      {sortedIssues.map(issue => {
         let issueKey;
         let issueTitle;
         let issueItem;
