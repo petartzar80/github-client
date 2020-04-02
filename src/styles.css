@@ -216,13 +216,11 @@ button:focus {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  /* transform: translateX(0vw); */
   opacity: 0;
   transition: all 2s;
 }
 
-.star-container.spread {
-  /* transform: translateX(100vw); */
+.star-container.appear {
   opacity: 1;
 }
 

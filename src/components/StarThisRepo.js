@@ -38,31 +38,83 @@ export const UNSTAR_REPO = gql`
   }
 `;
 
+const updateAddStar = (cache) => {
+  const query = cache.readQuery({
+    query: GET_STARS,
+  });
+
+  const totalCount = query.user.repository.stargazers.totalCount + 1;
+  const user = query.user;
+  const repository = query.user.repository;
+
+  cache.writeQuery({
+    query: GET_STARS,
+    data: {
+      ...query,
+      user: {
+        ...user,
+        repository: {
+          ...repository,
+          stargazers: {
+            ...query.user.repository.stargazers,
+            totalCount,
+          },
+        }
+      }
+    },
+  });
+};
+
+const updateRemoveStar = (cache) => {
+  const query = cache.readQuery({
+    query: GET_STARS,
+  });
+
+  const totalCount = query.user.repository.stargazers.totalCount - 1;
+  const user = query.user;
+  const repository = query.user.repository;
+
+  cache.writeQuery({
+    query: GET_STARS,
+    data: {
+      ...query,
+      user: {
+        ...user,
+        repository: {
+          ...repository,
+          stargazers: {
+            ...query.user.repository.stargazers,
+            totalCount,
+          },
+        }
+      }
+    },
+  });
+};
+
 const StarThisRepo = () => {
-  const [addStar] = useMutation(STAR_REPO);
-  const [removeStar] = useMutation(UNSTAR_REPO);
+  const [addStar] = useMutation(STAR_REPO,
+    { update: updateAddStar });
+  const [removeStar] = useMutation(UNSTAR_REPO,
+    { update: updateRemoveStar });
 
-  const [spread, setSpread] = useState('');
-
+  const [appear, setAppear] = useState('');
 
   const { loading, error, data } = useQuery(
     GET_STARS
   );
 
   useEffect(() => {
-    setTimeout(() => setSpread('spread'), 1000);
+    setTimeout(() => setAppear('appear'), 1000);
   }, [data]);
 
   if (!data || loading || error) return null;
-
-
-
 
   const id = data.user.repository.id;
   const stars = data.user.repository.stargazers.totalCount;
 
   return (
-    <div className={`star-container ${spread}`}>
+    <div className={`star-container ${appear}`}>
 
       {!data.user.repository.viewerHasStarred ? (
         <React.Fragment>
@@ -71,7 +123,7 @@ const StarThisRepo = () => {
         </React.Fragment>
       ) : (
           <React.Fragment>
-            <p>Of course, you can try unstarring the repo too, if you promise you'll add the star again.</p>
+            <p>You're allowed to unstar the Github Client repo, but only if you promise you'll add the star again.</p>
             <button onClick={() => removeStar({ variables: { id } })}>I promise.</button>
           </React.Fragment>
         )}
