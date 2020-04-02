@@ -165,7 +165,7 @@ button:focus {
 
 .issue-list {
   width: 90%;
-  height: 50rem;
+  max-height: 38rem;
   padding: 2rem;
   margin: 2rem auto;
   border: 1px solid #39ff14;
@@ -173,6 +173,13 @@ button:focus {
 
 .issue-list-title {
   margin-bottom: 2rem;
+}
+
+.issue-list-window {
+  border: 1px solid red;
+  padding: 2rem;
+  height: 24.7rem;
+  overflow-y: auto;
 }
 
 .issue-title {
@@ -183,6 +190,13 @@ button:focus {
 
 .issue-title:not(:last-child) {
   margin-bottom: 1rem;
+}
+
+.more-issues-btn {
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 /* MODAL */

@@ -16,6 +16,10 @@ const PULL_REQ_FRAGMENT = gql`
         ...comments
       }
     }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
   }
 
   ${COMMENTS_FRAGMENT}

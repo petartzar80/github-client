@@ -11,7 +11,7 @@ const Repo = ({ vars }) => {
   const [user, repo] = vars;
   const [tab, setTab] = useState();
 
-  const { loading, error, data } = useQuery(GET_USER_REPO, {
+  const { loading, error, data, fetchMore } = useQuery(GET_USER_REPO, {
     variables: { user, repo },
   });
 
@@ -21,6 +21,10 @@ const Repo = ({ vars }) => {
   const pullRequests = data.user.repository.pullRequests.nodes;
   const openIssues = data.user.repository.openIssues.edges;
   const closedIssues = data.user.repository.closedIssues.edges;
+
+  const pullPageInfo = data.user.repository.pullRequests.pageInfo;
+  const openPageInfo = data.user.repository.openIssues.pageInfo;
+  const closedPageInfo = data.user.repository.closedIssues.pageInfo;
 
   return (
     <div className="repo-container">
@@ -53,7 +57,12 @@ const Repo = ({ vars }) => {
               <div className="issue-list-title">
                 <h4>Pull Requests:</h4>
               </div>
-              <IssueList issues={pullRequests} />
+              <IssueList
+                issues={pullRequests}
+                fetchMore={fetchMore}
+                pageInfo={pullPageInfo}
+                type={'pull'}
+              />
             </div>
           }
 
@@ -62,7 +71,12 @@ const Repo = ({ vars }) => {
               <div className="issue-list-title">
                 <h4>Open Issues:</h4>
               </div>
-              <IssueList issues={openIssues} />
+              <IssueList
+                issues={openIssues}
+                fetchMore={fetchMore}
+                pageInfo={openPageInfo}
+                type={'open'}
+              />
             </div>
           }
 
@@ -71,7 +85,12 @@ const Repo = ({ vars }) => {
               <div className="issue-list-title">
                 <h4>Closed Issues:</h4>
               </div>
-              <IssueList issues={closedIssues} />
+              <IssueList
+                issues={closedIssues}
+                fetchMore={fetchMore}
+                pageInfo={closedPageInfo}
+                type={'closed'}
+              />
             </div>
           }
 

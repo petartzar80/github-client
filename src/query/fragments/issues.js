@@ -18,6 +18,10 @@ const ISSUES_FRAGMENT = gql`
         }
       }
     }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
   }
 
   ${COMMENTS_FRAGMENT}
