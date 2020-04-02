@@ -106,7 +106,7 @@ const StarThisRepo = () => {
 
   useEffect(() => {
     setTimeout(() => setAppear('appear'), 1000);
-  }, [data]);
+  }, []);
 
   if (!data || loading || error) return null;
 

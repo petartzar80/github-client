@@ -376,4 +376,22 @@ button:focus {
   .form-content {
     height: 100%;
   }
+  .repo-container {
+    font-size: 2rem;;
+  }
+  .issue-list {
+    min-height: 50rem;
+  }
+  .issue-list-window {
+    min-height: 30rem;
+  }
+  .tab-buttons button {
+    height: 4.5rem;
+  }
+  .star-container {
+    height: 20rem;
+  }
+  .issue-item {
+    max-width: 100vw;
+  }
 }

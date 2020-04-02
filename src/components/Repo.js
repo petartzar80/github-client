@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 import IssueList from './IssueList';
 import ErrorMessage from './ErrorMsg';
 import GET_USER_REPO from '../query/mainQuery';
+import StarThisRepo from './StarThisRepo';
+
 
 const Repo = ({ vars }) => {
   const [user, repo] = vars;
@@ -96,6 +98,7 @@ const Repo = ({ vars }) => {
 
         </div>
       }
+      {tab && <StarThisRepo />}
     </div>
   );
 }
