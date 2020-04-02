@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 import IssueItem from './IssueItem';
+import StarThisRepo from './StarThisRepo';
 
 const IssueList = ({ issues, fetchMore, pageInfo, type }) => {
   const [visible, setVisible] = useState(false);
@@ -147,8 +148,9 @@ const IssueList = ({ issues, fetchMore, pageInfo, type }) => {
 
       )}
 
-    </div>
+      <StarThisRepo />
 
+    </div>
   )
 };
 
