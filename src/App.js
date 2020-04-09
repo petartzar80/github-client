@@ -19,9 +19,10 @@ const App = () => {
   const [accountType, setAccountType] = useState();
 
   const handleChangeAccount = e => {
+    setClient(null);
+    setStretch(null);
+    setPath('');
     setAccountType(e.target.value);
-    console.log(accountType);
-
   }
 
   const handleChangeToken = e => {
@@ -66,12 +67,14 @@ const App = () => {
               <div className="account">
                 <div className="form-button btn-account">
                   <button
+                    type="reset"
                     value="user"
                     onClick={(e) => handleChangeAccount(e)}
                   >User</button>
                 </div>
                 <div className="form-button btn-account">
                   <button
+                    type="reset"
                     value="org"
                     onClick={(e) => handleChangeAccount(e)}
                   >Organization</button>

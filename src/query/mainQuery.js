@@ -1,43 +1,30 @@
 import gql from 'graphql-tag';
 
-import PULL_REQ_FRAGMENT from './fragments/pullReqs';
-import ISSUES_FRAGMENT from './fragments/issues';
+import REPOSITORY_FRAGMENT from './fragments/repository';
 
-const GET_USER_REPO = gql`
-  query ($user: String!, $repo: String!, $cursor: String) {
-    user(login: $user) {
+const GET_REPO = gql`
+  query (
+    $user: Boolean!
+    $org: Boolean!
+    $accountName: String!
+    $repoName: String! 
+    $cursor: String
+  ) {
+    user(login: $accountName) @include(if: $user){
       name
-      repository(name: $repo) {
-        name
-        pullRequests(
-          first: 5
-          orderBy: { field: CREATED_AT, direction: DESC }
-          after: $cursor
-        ) {
-          ...pullReqs
-        }
-        openIssues: issues(
-          first: 5
-          orderBy: { field: CREATED_AT, direction: DESC }
-          after: $cursor,
-          states: [OPEN]
-        ) {
-          ...issues
-        }
-        closedIssues: issues(
-          first: 5
-          orderBy: { field: CREATED_AT, direction: DESC }
-          after: $cursor,
-          states: [CLOSED]
-        ) {
-          ...issues
-        }
+      repository(name: $repoName) {
+        ...repo
+      }
+    }
+    organization(login: $accountName) @include(if: $org){
+      name
+      repository(name: $repoName) {
+        ...repo
       }
     }
   }
 
-  ${PULL_REQ_FRAGMENT}
-  ${ISSUES_FRAGMENT}
+  ${REPOSITORY_FRAGMENT}
 `;
 
-export default GET_USER_REPO;
+export default GET_REPO;

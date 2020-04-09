@@ -5,36 +5,38 @@ import { useQuery } from '@apollo/react-hooks';
 
 import IssueList from './IssueList';
 import ErrorMessage from './ErrorMsg';
-import GET_USER_REPO from '../query/mainQuery';
+import GET_REPO from '../query/mainQuery';
 import StarThisRepo from './StarThisRepo';
 
 
 const Repo = ({ vars }) => {
-  const [accountType, user, repo] = vars;
+  const [accountType, accountName, repoName] = vars;
   const [tab, setTab] = useState();
+  const user = accountType === 'user';
+  const org = accountType !== 'user';
 
-  console.log('repo acc type: ', accountType);
-
-
-  const { loading, error, data, fetchMore } = useQuery(GET_USER_REPO, {
-    variables: { user, repo },
+  const { loading, error, data, fetchMore } = useQuery(GET_REPO, {
+    variables: { user, org, accountName, repoName },
   });
 
   if (loading) return <h4 className="loading">Loading...</h4>;
   if (error) return <ErrorMessage error={error} />;
 
-  const pullRequests = data.user.repository.pullRequests.nodes;
-  const openIssues = data.user.repository.openIssues.edges;
-  const closedIssues = data.user.repository.closedIssues.edges;
+  const result = data.user ? data.user.repository : data.organization.repository;
 
-  const pullPageInfo = data.user.repository.pullRequests.pageInfo;
-  const openPageInfo = data.user.repository.openIssues.pageInfo;
-  const closedPageInfo = data.user.repository.closedIssues.pageInfo;
+  const name = data.user ? data.user.name : data.organization.name;
+
+  const pullRequests = result.pullRequests.nodes;
+  const openIssues = result.openIssues.edges;
+  const closedIssues = result.closedIssues.edges;
+  const pullPageInfo = result.pullRequests.pageInfo;
+  const openPageInfo = result.openIssues.pageInfo;
+  const closedPageInfo = result.closedIssues.pageInfo;
 
   return (
     <div className="repo-container">
       <div className="repo-info">
-        <h3>You are exploring repo "{data.user.repository.name}" by {data.user.name}.</h3>
+        <h3>You are exploring repo "{result.name}" by {name}</h3>
 
         {!pullRequests.length
           && !openIssues.length
