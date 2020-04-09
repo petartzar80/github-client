@@ -123,7 +123,7 @@ const StarThisRepo = () => {
         </React.Fragment>
       ) : (
           <React.Fragment>
-            <p>You're allowed to unstar the Github Client repo, but only if you promise you'll add the star again.</p>
+            <p>You can unstar the Github Client repo, but only if you promise you'll add the star again.</p>
             <button onClick={() => removeStar({ variables: { id } })}>I promise.</button>
           </React.Fragment>
         )}

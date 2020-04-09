@@ -14,8 +14,15 @@ const App = () => {
   const [path, setPath] = useState('');
   const [client, setClient] = useState();
   const [stretch, setStretch] = useState('');
-  const [user, setUser] = useState();
+  const [account, setAccount] = useState();
   const [repo, setRepo] = useState();
+  const [accountType, setAccountType] = useState();
+
+  const handleChangeAccount = e => {
+    setAccountType(e.target.value);
+    console.log(accountType);
+
+  }
 
   const handleChangeToken = e => {
     setToken(e.target.value);
@@ -41,8 +48,8 @@ const App = () => {
 
     setStretch('container-stretch');
 
-    const [user, repo] = path.split('/');
-    setUser(user);
+    const [account, repo] = path.split('/');
+    setAccount(account);
     setRepo(repo);
   }
 
@@ -56,6 +63,21 @@ const App = () => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form-content">
             <div className="inputs">
+              <div className="account">
+                <div className="form-button btn-account">
+                  <button
+                    value="user"
+                    onClick={(e) => handleChangeAccount(e)}
+                  >User</button>
+                </div>
+                <div className="form-button btn-account">
+                  <button
+                    value="org"
+                    onClick={(e) => handleChangeAccount(e)}
+                  >Organization</button>
+                </div>
+              </div>
+
               <div className="form-input">
                 <label htmlFor="githubToken">
                   OAuth GitHub token:
@@ -93,7 +115,7 @@ const App = () => {
 
       {client &&
         <ApolloProvider client={client}>
-          <Repo vars={[user, repo]} />
+          <Repo vars={[accountType, account, repo]} />
         </ApolloProvider>
       }
     </div>

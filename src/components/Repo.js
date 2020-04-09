@@ -10,8 +10,11 @@ import StarThisRepo from './StarThisRepo';
 
 
 const Repo = ({ vars }) => {
-  const [user, repo] = vars;
+  const [accountType, user, repo] = vars;
   const [tab, setTab] = useState();
+
+  console.log('repo acc type: ', accountType);
+
 
   const { loading, error, data, fetchMore } = useQuery(GET_USER_REPO, {
     variables: { user, repo },
