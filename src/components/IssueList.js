@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import IssueItem from './IssueItem';
 
-const IssueList = ({ issues, fetchMore, pageInfo, type, accountType }) => {
+const IssueList = ({ issues, fetchMore, pageInfo, issueType, accountType }) => {
   const [visible, setVisible] = useState(false);
   const [issueDetails, setIssueDetails] = useState();
 
@@ -12,62 +12,23 @@ const IssueList = ({ issues, fetchMore, pageInfo, type, accountType }) => {
       return previousResult;
     }
 
-    if (type === 'pull') {
-      return {
-        ...previousResult,
-        [accountType]: {
-          ...previousResult[accountType],
-          repository: {
-            ...previousResult[accountType].repository,
-            pullRequests: {
-              ...previousResult[accountType].repository.pullRequests,
-              ...fetchMoreResult[accountType].repository.pullRequests,
-              nodes: [
-                ...previousResult[accountType].repository.pullRequests.nodes,
-                ...fetchMoreResult[accountType].repository.pullRequests.nodes,
-              ]
-            },
-          }
-        }
-      }
-    }
+    let items;
+    issueType === 'pullRequests' ? items = 'nodes' : items = 'edges';
 
-    if (type === 'open') {
-      return {
-        ...previousResult,
-        [accountType]: {
-          ...previousResult[accountType],
-          repository: {
-            ...previousResult[accountType].repository,
-            openIssues: {
-              ...previousResult[accountType].repository.openIssues,
-              ...fetchMoreResult[accountType].repository.openIssues,
-              edges: [
-                ...previousResult[accountType].repository.openIssues.edges,
-                ...fetchMoreResult[accountType].repository.openIssues.edges,
-              ]
-            },
-          }
-        }
-      }
-    }
-
-    if (type === 'closed') {
-      return {
-        ...previousResult,
-        [accountType]: {
-          ...previousResult[accountType],
-          repository: {
-            ...previousResult[accountType].repository,
-            closedIssues: {
-              ...previousResult[accountType].repository.closedIssues,
-              ...fetchMoreResult[accountType].repository.closedIssues,
-              edges: [
-                ...previousResult[accountType].repository.closedIssues.edges,
-                ...fetchMoreResult[accountType].repository.closedIssues.edges,
-              ]
-            },
-          }
+    return {
+      ...previousResult,
+      [accountType]: {
+        ...previousResult[accountType],
+        repository: {
+          ...previousResult[accountType].repository,
+          [issueType]: {
+            ...previousResult[accountType].repository[issueType],
+            ...fetchMoreResult[accountType].repository[issueType],
+            [items]: [
+              ...previousResult[accountType].repository[issueType][items],
+              ...fetchMoreResult[accountType].repository[issueType][items],
+            ]
+          },
         }
       }
     }

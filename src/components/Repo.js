@@ -45,18 +45,33 @@ const Repo = ({ vars }) => {
         }
       </div>
 
-      {(pullRequests.length
-        || openIssues.length
-        || closedIssues.length) &&
+      {(pullRequests.length > 0
+        || openIssues.length > 0
+        || closedIssues.length > 0) &&
         <div className="issue-container">
 
           <div className="tab-buttons">
             <button
-              onClick={() => setTab('pull')}>Pull Requests</button>
+              onClick={() => setTab('pull')}
+              className={`${tab === 'pull' ? "highlight-2" : ""}`}
+            >
+              Pull Requests
+            </button>
+
             <button
-              onClick={() => setTab('open')}>Open Issues</button>
+              onClick={() => setTab('open')}
+              className={`${tab === 'open' ? "highlight-2" : ""}`}
+            >
+              Open Issues
+            </button>
+
             <button
-              onClick={() => setTab('closed')}>Closed Issues</button>
+              onClick={() => setTab('closed')}
+              className={`${tab === 'closed' ? "highlight-2" : ""}`}
+            >
+              Closed Issues
+            </button>
+
           </div>
 
           {tab === 'pull' &&
@@ -68,7 +83,7 @@ const Repo = ({ vars }) => {
                 issues={pullRequests}
                 fetchMore={fetchMore}
                 pageInfo={pullPageInfo}
-                type={'pull'}
+                issueType={'pullRequests'}
                 accountType={accountType}
               />
             </div>
@@ -83,7 +98,7 @@ const Repo = ({ vars }) => {
                 issues={openIssues}
                 fetchMore={fetchMore}
                 pageInfo={openPageInfo}
-                type={'open'}
+                issueType={'openIssues'}
                 accountType={accountType}
               />
             </div>
@@ -98,7 +113,7 @@ const Repo = ({ vars }) => {
                 issues={closedIssues}
                 fetchMore={fetchMore}
                 pageInfo={closedPageInfo}
-                type={'closed'}
+                issueType={'closedIssues'}
                 accountType={accountType}
               />
             </div>

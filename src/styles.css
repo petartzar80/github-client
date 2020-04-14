@@ -117,8 +117,12 @@ button:focus {
   width: 100%;
 }
 
-.highlight {
+.highlight-1 {
   border: 1px solid red;
+}
+
+.highlight-2 {
+  border: 2px solid red;
 }
 
 .inputs {
@@ -173,11 +177,6 @@ button:focus {
 
 .tab-buttons button {
   height: 3rem;
-}
-
-.tab-buttons button:focus {
-  outline: none;
-  border: 2px solid red;
 }
 
 .issue-list {

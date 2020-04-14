@@ -67,7 +67,7 @@ const App = () => {
               <div className="account">
                 <div className="form-button btn-account">
                   <button
-                    className={`${accountType === 'user' ? "highlight" : ""}`}
+                    className={`${accountType === 'user' ? "highlight-1" : ""}`}
                     type="reset"
                     value="user"
                     onClick={(e) => handleChangeAccount(e)}
@@ -75,7 +75,7 @@ const App = () => {
                 </div>
                 <div className="form-button btn-account">
                   <button
-                    className={`${accountType === 'organization' ? "highlight" : ""}`}
+                    className={`${accountType === 'organization' ? "highlight-1" : ""}`}
                     type="reset"
                     value="organization"
                     onClick={(e) => handleChangeAccount(e)}
