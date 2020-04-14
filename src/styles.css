@@ -128,6 +128,7 @@ button:focus {
 .inputs {
   margin: 0 auto;
   height: 66%;
+  min-width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -367,11 +368,14 @@ button:focus {
     margin-bottom: 0;
   }
   .form-container {
-    height: 14rem;
+    height: 18rem;
     font-size: 1.4rem;
   }
   .form-content {
     width: 100%;
+  }
+  .inputs {
+    min-width: 60%;
   }
   .issue-list {
     height: 100%;

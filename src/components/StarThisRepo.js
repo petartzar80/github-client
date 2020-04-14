@@ -1,42 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
-const GET_STARS = gql`
-  query { 
-    user(login: "petartzar80"){ 
-      repository(name: "github-client") {
-        id
-        stargazers {
-        totalCount
-        }
-        viewerHasStarred
-      }
-    }
-  }
-`;
-
-const STAR_REPO = gql`
-  mutation($id: ID!) {
-    addStar(input: { starrableId: $id }) {
-      starrable {
-        id
-        viewerHasStarred
-      }
-    }
-  }
-`;
-
-export const UNSTAR_REPO = gql`
-  mutation($id: ID!) {
-    removeStar(input: { starrableId: $id}) {
-      starrable {
-        id
-        viewerHasStarred
-      }
-    }
-  }
-`;
+import GET_STARS from '../query/getStars';
+import { STAR_REPO, UNSTAR_REPO } from '../mutation/starUnstarRepo';
 
 const updateAddStar = (cache) => {
   const query = cache.readQuery({

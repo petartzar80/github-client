@@ -16,11 +16,11 @@ const App = () => {
   const [stretch, setStretch] = useState('');
   const [account, setAccount] = useState();
   const [repo, setRepo] = useState();
-  const [accountType, setAccountType] = useState();
+  const [accountType, setAccountType] = useState('account');
 
   const handleChangeAccount = e => {
     setClient(null);
-    setStretch(null);
+    setStretch('');
     setPath('');
     setAccountType(e.target.value);
   }
@@ -86,7 +86,7 @@ const App = () => {
               <div className="form-input">
                 <label htmlFor="githubToken">
                   OAuth GitHub token:
-              </label>
+                </label>
                 <input
                   id="githubToken"
                   type="text"
@@ -98,8 +98,8 @@ const App = () => {
               </div>
               <div className="form-input">
                 <label htmlFor="url">
-                  Path (user/repo):
-              </label>
+                  Path ({accountType}/repo):
+                </label>
                 <input
                   id="url"
                   type="text"
