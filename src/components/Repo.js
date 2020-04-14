@@ -69,6 +69,7 @@ const Repo = ({ vars }) => {
                 fetchMore={fetchMore}
                 pageInfo={pullPageInfo}
                 type={'pull'}
+                accountType={accountType}
               />
             </div>
           }
@@ -83,6 +84,7 @@ const Repo = ({ vars }) => {
                 fetchMore={fetchMore}
                 pageInfo={openPageInfo}
                 type={'open'}
+                accountType={accountType}
               />
             </div>
           }
@@ -97,6 +99,7 @@ const Repo = ({ vars }) => {
                 fetchMore={fetchMore}
                 pageInfo={closedPageInfo}
                 type={'closed'}
+                accountType={accountType}
               />
             </div>
           }

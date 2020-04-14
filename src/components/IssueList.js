@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import IssueItem from './IssueItem';
 
-const IssueList = ({ issues, fetchMore, pageInfo, type }) => {
+const IssueList = ({ issues, fetchMore, pageInfo, type, accountType }) => {
   const [visible, setVisible] = useState(false);
   const [issueDetails, setIssueDetails] = useState();
 
@@ -15,16 +15,16 @@ const IssueList = ({ issues, fetchMore, pageInfo, type }) => {
     if (type === 'pull') {
       return {
         ...previousResult,
-        user: {
-          ...previousResult.user,
+        [accountType]: {
+          ...previousResult[accountType],
           repository: {
-            ...previousResult.user.repository,
+            ...previousResult[accountType].repository,
             pullRequests: {
-              ...previousResult.user.repository.pullRequests,
-              ...fetchMoreResult.user.repository.pullRequests,
+              ...previousResult[accountType].repository.pullRequests,
+              ...fetchMoreResult[accountType].repository.pullRequests,
               nodes: [
-                ...previousResult.user.repository.pullRequests.nodes,
-                ...fetchMoreResult.user.repository.pullRequests.nodes,
+                ...previousResult[accountType].repository.pullRequests.nodes,
+                ...fetchMoreResult[accountType].repository.pullRequests.nodes,
               ]
             },
           }
@@ -35,16 +35,16 @@ const IssueList = ({ issues, fetchMore, pageInfo, type }) => {
     if (type === 'open') {
       return {
         ...previousResult,
-        user: {
-          ...previousResult.user,
+        [accountType]: {
+          ...previousResult[accountType],
           repository: {
-            ...previousResult.user.repository,
+            ...previousResult[accountType].repository,
             openIssues: {
-              ...previousResult.user.repository.openIssues,
-              ...fetchMoreResult.user.repository.openIssues,
+              ...previousResult[accountType].repository.openIssues,
+              ...fetchMoreResult[accountType].repository.openIssues,
               edges: [
-                ...previousResult.user.repository.openIssues.edges,
-                ...fetchMoreResult.user.repository.openIssues.edges,
+                ...previousResult[accountType].repository.openIssues.edges,
+                ...fetchMoreResult[accountType].repository.openIssues.edges,
               ]
             },
           }
@@ -55,16 +55,16 @@ const IssueList = ({ issues, fetchMore, pageInfo, type }) => {
     if (type === 'closed') {
       return {
         ...previousResult,
-        user: {
-          ...previousResult.user,
+        [accountType]: {
+          ...previousResult[accountType],
           repository: {
-            ...previousResult.user.repository,
+            ...previousResult[accountType].repository,
             closedIssues: {
-              ...previousResult.user.repository.closedIssues,
-              ...fetchMoreResult.user.repository.closedIssues,
+              ...previousResult[accountType].repository.closedIssues,
+              ...fetchMoreResult[accountType].repository.closedIssues,
               edges: [
-                ...previousResult.user.repository.closedIssues.edges,
-                ...fetchMoreResult.user.repository.closedIssues.edges,
+                ...previousResult[accountType].repository.closedIssues.edges,
+                ...fetchMoreResult[accountType].repository.closedIssues.edges,
               ]
             },
           }

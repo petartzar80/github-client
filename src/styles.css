@@ -105,16 +105,20 @@ button:focus {
 
 .account {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .btn-account {
   margin: 0;
-  width: 50%;
+  width: 49%;
 }
 
 .btn-account button {
   width: 100%;
+}
+
+.highlight {
+  border: 1px solid red;
 }
 
 .inputs {
@@ -346,6 +350,12 @@ button:focus {
 }
 
 /* BASIC RESPONSIVE DESIGN */
+
+@media (max-height: 900px) {
+  html { 
+    font-size: 50%;
+  }
+}
 
 @media (max-width: 768px) {
   html { 
