@@ -16,7 +16,7 @@ const App = () => {
   const [stretch, setStretch] = useState('');
   const [account, setAccount] = useState();
   const [repo, setRepo] = useState();
-  const [accountType, setAccountType] = useState('account');
+  const [accountType, setAccountType] = useState('user');
 
   const handleChangeAccount = e => {
     setClient(null);
@@ -89,7 +89,7 @@ const App = () => {
                 </label>
                 <input
                   id="githubToken"
-                  type="text"
+                  type="password"
                   value={token}
                   onChange={(e) => handleChangeToken(e)}
                   className="input-field token-input"
