@@ -2,7 +2,7 @@
 
 ## Demo
 
-https://connect-4.now.sh/
+https://github-client.petartzar80.now.sh/
 
 Try it out!
 
