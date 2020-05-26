@@ -1,5 +1,17 @@
 # GitHub Client
 
+## Demo
+
+https://connect-4.now.sh/
+
+Try it out!
+
+## Preview
+
+![Preview_01](preview_01.gif)
+
+![Preview_02](preview_02.gif)
+
 ## Description
 
 A single page React app communicating with GitHub GraphQL API v4, which displays following information regarding a chosen organization or user repository:
